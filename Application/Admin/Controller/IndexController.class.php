@@ -1,8 +1,15 @@
 <?php
-namespace Home\Controller;
+namespace Admin\Controller;
 use Think\Controller;
-class IndexController extends Controller {
-    public function index(){
-      echo 'aaa';
-    }
+use Admin\Controller\ControllerBase;
+class IndexController extends ControllerBase {
+
+
+  public function _initialize() {
+    parent::_initialize();
+  }
+
+  public function index(){
+    $this->display();
+  }
 }
