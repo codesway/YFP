@@ -86,3 +86,9 @@ ERR: 模板不存在:./Application/Admin/View/Index/index.html
 [ 2016-05-18T14:39:36+08:00 ] 127.0.0.1 /YFP/admin.php
 ERR: 模板不存在:./Application/Admin/View/Index/index.html
 
+[ 2016-05-18T15:26:00+08:00 ] 127.0.0.1 /YFP/admin.php
+ERR: 模板不存在:./Application/Admin/View/Index/index.html
+
+[ 2016-05-18T15:26:02+08:00 ] 127.0.0.1 /YFP/admin.php
+ERR: 模板不存在:./Application/Admin/View/Index/index.html
+
