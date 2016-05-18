@@ -92,3 +92,51 @@ ERR: 模板不存在:./Application/Admin/View/Index/index.html
 [ 2016-05-18T15:26:02+08:00 ] 127.0.0.1 /YFP/admin.php
 ERR: 模板不存在:./Application/Admin/View/Index/index.html
 
+[ 2016-05-18T15:34:15+08:00 ] 127.0.0.1 /YFP/index.php/admin/login
+ERR: 无法加载控制器:Login
+
+[ 2016-05-18T15:34:33+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/login
+ERR: 模板不存在:./Application/Admin/View/Index/login.html
+
+[ 2016-05-18T15:39:01+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T16:00:13+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T16:02:02+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T16:50:29+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T16:51:35+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T16:51:36+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T16:52:09+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T16:56:28+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T17:00:13+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T17:00:28+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T17:00:44+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T17:01:23+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T17:23:10+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+
+[ 2016-05-18T17:25:47+08:00 ] 127.0.0.1 /YFP/index.php/admin/index/assets/css/amazeui.min.css
+ERR: 非法操作:assets
+

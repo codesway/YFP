@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 <head lang="en">
   <meta charset="UTF-8">
@@ -25,6 +25,7 @@
   </style>
 </head>
 <body>
+  <?php print_r(C('PUBLIC_PATH')); exit();?>
 <div class="header">
   <div class="am-g">
     <h1>Web ide</h1>

@@ -12,4 +12,8 @@ class IndexController extends ControllerBase {
   public function index(){
     $this->display();
   }
+
+  public function login() {
+    $this->display();
+  }
 }
