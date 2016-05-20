@@ -7,6 +7,7 @@ class IndexController extends ControllerBase {
 
   public function _initialize() {
     parent::_initialize();
+    $this->checkLogin();
   }
 
   public function index(){

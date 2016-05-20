@@ -9,6 +9,10 @@ class UserService {
   CONST MASK_KEY = '5n2puFHOCd0IstRfGvyawLBkoSiTVe8m';
 
   public static function addUser($username, $password) {
+    $userInfo = D('user')->where("username='$username'");
+    if (!empty($userInfo)) {
+      throw new Exception('user.user:exists');
+    }
     $salt = self::createSalt();
     $userInfo = [
       'username' => trim($username),

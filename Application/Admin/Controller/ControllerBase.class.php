@@ -4,32 +4,24 @@ use Think\Controller;
 use Service\User;
 
 class ControllerBase extends Controller {
-
+  protected $userInfo = [];
 
   public function _initialize() {
-    if (!$this->checkLogin()) {
-      return $this->redirect('account/login?redirect_uri=');
+    $cookieCode = cookie('yfp_id');
+    $user = new User\UserService();
+    $info = $user::decryptSession($cookieCode);
+    if (!empty($info) && $info['time'] > time()){
+      $this->userInfo = $info;
     }
   }
 
   protected function checkLogin() {
-    $cookieCode = cookie('yfp_id');
-    if (empty($cookieCode)) {
-      return false;
+    $uri = '';
+
+    if (empty($this->userInfo)) {
+      return $this->redirect('account/login?jump=' . urlencode($uri), '请先登录');
     }
-    $user = new User\UserService();
-    $info = $user->decryptSession($cookieCode);
-    if (empty($info['uid'])) {
-      return false;
-    }
-    if ($info['time'] < time()) {
-      return false;
-    }
-    $userInfo = $user::getUser($info['uid']);
-    if (empty($userInfo)) {
-      false;
-    }
-    $this->userInfo = $userInfo;
-    return true;
+
   }
+
 }

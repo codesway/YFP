@@ -6,12 +6,13 @@ use Service\User;
 class AccountController extends ControllerBase {
 
   public function _initialize() {
-    if (parent::checkLogin()) {
-      return $this->redirect('index/index');
-    }
+    parent::_initialize();
   }
 
   public function login() {
+    if (!empty($this->userInfo)) {
+      $this->redirect('index/index');
+    }
     if (IS_POST) {
       $userApi = new User\UserService();
       $userInfo = $userApi::login(I('username'), I('password'));
@@ -27,7 +28,9 @@ class AccountController extends ControllerBase {
   }
 
   public function register() {
-    $this->checkLogin();
+    if (!empty($this->userInfo)) {
+      $this->redirect('index/index');
+    }
     if (IS_POST) {
       if (I('password') !== I('checkword')) {
         return $this->error('参数错误请重新输入');
