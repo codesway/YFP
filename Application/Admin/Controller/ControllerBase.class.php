@@ -7,35 +7,29 @@ class ControllerBase extends Controller {
 
 
   public function _initialize() {
-    if ($this->checkLogin()) {
-      return $this->index();
+    if (!$this->checkLogin()) {
+      return $this->redirect('account/login?redirect_uri=');
     }
-    return $this->redirect('index/login');
   }
 
   protected function checkLogin() {
     $cookieCode = cookie('yfp_id');
     if (empty($cookieCode)) {
-      return $this->noticeNotLogin();
+      return false;
     }
     $user = new User\UserService();
     $info = $user->decryptSession($cookieCode);
     if (empty($info['uid'])) {
-      return $this->noticeNotLogin();
+      return false;
     }
     if ($info['time'] < time()) {
-      return $this->noticeNotLogin('已超时，请重新登录');
+      return false;
     }
     $userInfo = $user::getUser($info['uid']);
     if (empty($userInfo)) {
-      $this->noticeNotLogin();
+      false;
     }
     $this->userInfo = $userInfo;
     return true;
-  }
-
-
-  protected function noticeNotLogin($notice = '请登录') {
-    return $this->error($notice, U('admin/index/index'));
   }
 }
