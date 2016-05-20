@@ -4,4 +4,5 @@ return array(
 	'PUBLIC_PATH' => '../../../Public/',
 	'TMPL_ENGINE_TYPE' =>'PHP',
 	'URL_HTML_SUFFIX' => '',
+	
 );
