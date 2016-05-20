@@ -9,32 +9,36 @@ class UserService {
   CONST MASK_KEY = '5n2puFHOCd0IstRfGvyawLBkoSiTVe8m';
 
   public static function addUser($username, $password) {
+    $salt = self::createSalt();
     $userInfo = [
       'username' => trim($username),
-      'password' => self::getPwd(md5($password)),
-      'nickname' => !empty($nickname) ? trim($nickname) : '新用户' . $username,
-      'salt' => self::createSalt(),
+      'password' => self::getPwd(md5($password), $salt),
+      'nickname' => '新用户' . $username,
+      'salt' => $salt,
       'create_time' => time(),
     ];
-    print_R($userInfo);exit();
-    return D('user')->insert($userInfo);
+    return D('user')->add($userInfo);
   }
 
-  public function login($username, $password) {
-    $user = D('user')->where('username=' . $username)->find();
+  public static function getUser($id) {
+    return D('user')->where('id=' . $id)->find();
+  }
+
+  public static function login($username, $password) {
+    $user = D('user')->where("username='$username'")->find();
 
     if (empty($user)) {
       return [];
     }
 
-    if (!self::checkPwd($password, $user['slat'], $user['password'])) {
+    if (!self::checkPwd($password, $user['salt'], $user['password'])) {
       return [];
     }
 
     return $user;
   }
 
-  private static checkPwd($password, $salt, $saltPassword) {
+  private static function checkPwd($password, $salt, $saltPassword) {
     $realPwd = self::getPwd(md5($password), $salt);
     return $saltPassword === $realPwd;
   }
@@ -53,7 +57,7 @@ class UserService {
       'uid' => $uid,
       'time' => time()+$expire
     ];
-    $return = json_encode($session) . '&' . md5($session);
+    $return = json_encode($session) . '&' . md5(json_encode($session));
     return base64_encode(self::mask($return));
   }
 
@@ -65,6 +69,9 @@ class UserService {
         return [];
     }
     $data = json_decode($arr[0], true);
+    if (md5($arr[0]) !== $arr[1]) {
+      return [];
+    }
     $data['raw'] = $arr[0];
     $data['sign'] = $arr[1];
     return $data;
@@ -78,7 +85,7 @@ class UserService {
       while($i < $len){
           $j = 0;
           while($i < $len && $j < 16){
-              $result .= $data[$i] ^ $DataMd5[$j];
+              $result .= $str[$i] ^ $DataMd5[$j];
               $i++;
               $j++;
           }

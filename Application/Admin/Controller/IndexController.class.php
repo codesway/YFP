@@ -11,40 +11,39 @@ class IndexController extends ControllerBase {
   }
 
   public function index(){
-    $this->display();
+    return $this->welcome();
   }
 
   public function login() {
-    $this->display();
-  }
-
-  public function dologin() {
-
-    // if (!IS_POST) {
-    //   $this->error('非法请求');
-    // }
-    // $code = I('code');
-    // $userApi = new User\UserService();
-
-    // if (empty($username) || empty($password) || empty($code)) {
-    //   $this->error('参数错误, 请重新输入');
-    // }
-
+    if (IS_POST) {
+      $userApi = new User\UserService();
+      $userInfo = $userApi::login(I('username'), I('password'));
+      if (empty($userInfo)) {
+        $this->error('用户名或密码错误，请重新输入');
+      }
+      //注册COOKIE
+      $cookieCode = $userApi::encryptSession($userInfo['id']);
+      cookie('yfp_id', $cookieCode);
+      return $this->success('恭喜，登录成功', U('admin/index/index'));
+    }
+    return $this->display();
   }
 
   public function welcome() {
-
+    return $this->display('index/index');
   }
 
-  public function registerUser() {
+  public function register() {
     if (IS_POST) {
       if (I('password') !== I('checkword')) {
-        $this->error('参数错误请重新输入');
+        return $this->error('参数错误请重新输入');
       }
       $userApi = new User\UserService();
-      return $userApi->addUser(I('username'), I('password'));
+      if ($userApi::addUser(I('username'), I('password'))) {
+        return $this->success('恭喜，注册成功', U('admin/index/index'));
+      }
     }
-    // $this->display();
+    return $this->display();
   }
 
 }
